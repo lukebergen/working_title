@@ -1,0 +1,36 @@
+{
+  "sprite_width": 24,
+  "sprite_height": 32,
+  "animations": [
+    {
+      "name": "idle",
+      "ticks_per_frame": 6,
+      "start_index": 0,
+      "end_index": 0
+    },
+    {
+      "name": "walk_down",
+      "ticks_per_frame": 6,
+      "start_index": 0,
+      "end_index": 7
+    },
+    {
+      "name": "walk_up",
+      "ticks_per_frame": 6,
+      "start_index": 8,
+      "end_index": 15
+    },
+    {
+      "name": "walk_left",
+      "ticks_per_frame": 6,
+      "start_index": 16,
+      "end_index": 23
+    },
+    {
+      "name": "walk_right",
+      "ticks_per_frame": 6,
+      "start_index": 24,
+      "end_index": 31
+    }
+  ]
+}
