@@ -6,6 +6,7 @@ require 'json'
 
 require './game_object'
 require './camera'
+require './image'
 require './map'
 require './animation'
 
@@ -23,10 +24,21 @@ class Main < Gosu::Window
     $WINDOW = self
     @movement = [0, 0]
 
-    @map = ::Map.new("./world/dev")
-    @player = GameObject.load(player_path + "/player.rb")
-    @player.set_animation("idle")
+    @game_objects = []
+    load_area("./world/dev")
     $CAMERA = Camera.new($WINDOW)
+  end
+
+  def load_area(path)
+    @map = ::Map.new(path)
+    Dir.glob(File.join(path, "*.rb")).each do |path|
+      obj = GameObject.load(path)
+      @game_objects << obj
+      if obj.attributes["id"] == "player"
+        @player = obj
+        @player.set_animation("idle")
+      end
+    end
   end
 
   def button_down(id)
@@ -79,8 +91,9 @@ class Main < Gosu::Window
 
   def draw
     $CAMERA.draw(@map)
-    $CAMERA.draw(@player)#, WIN_WIDTH / 2.0, WIN_HEIGHT / 2.0)
-    # @map.draw(-@player.attributes['x'] + (WIN_WIDTH / 2.0), -@player.attributes['y'] + (WIN_HEIGHT / 2.0), 0)
+    @game_objects.each do |obj|
+      $CAMERA.draw(obj)
+    end
   end
 
   private

@@ -4,7 +4,7 @@ end
 __END__
 {
   "id": "rock1",
-  "class": "terrain",
+  "image": "assets/images/rock.png",
   "x": 100,
   "y": 100
 }
