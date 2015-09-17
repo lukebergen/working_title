@@ -15,8 +15,8 @@ $ANIMATIONS_DIR = File.join($ASSETS_DIR, "animations")
 $TILES_DIR = File.join($ASSETS_DIR, "tilesets")
 $WORLD_DIR = "./world"
 
-WIN_WIDTH = 600
-WIN_HEIGHT = 400
+WIN_WIDTH = 800
+WIN_HEIGHT = 600
 
 class Main < Gosu::Window
   def initialize
