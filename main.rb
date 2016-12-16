@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'find'
 require 'gosu'
 require 'json'
 
