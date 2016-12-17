@@ -3,8 +3,8 @@ require 'json'
 class GameObject
 
   class << self
-    def load(path)
-      inst = self.new(path)
+    def load(path, game)
+      inst = self.new(path, game)
       file_str = File.read(path)
       inst.instance_eval(file_str)
       
@@ -27,8 +27,9 @@ class GameObject
     end
   end
 
-  def initialize(source_path)
+  def initialize(source_path, game)
     @source_path = source_path
+    @game = game
   end
 
   def save
@@ -37,6 +38,10 @@ class GameObject
 
   def attributes
     @attributes
+  end
+
+  def on(message, &block)
+    @game.register_listener(message, &block)
   end
 
   def [](k)
@@ -48,12 +53,13 @@ class GameObject
   end
 
   def set_animation(name)
+    # In general, animations, `current_image`, etc... those should be in forms huh?
     path = File.join($ANIMATIONS_DIR, self.attributes["class"])
     @current_animation = Animation.new(path, name)
   end
 
   def update
-    @current_animation.tick
+    @current_animation.tick if @current_animation
   end
 
   def current_image

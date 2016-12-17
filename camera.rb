@@ -1,13 +1,19 @@
 class Camera
   attr_accessor :x, :y, :window
 
-  def initialize(win)
+  def initialize(win, attach_to = nil)
     @window = win
+    @attach_to = attach_to
     @x = 0
     @y = 0
   end
 
+  def attach(obj)
+    @attach_to = obj
+  end
+
   def draw(obj, manual_x=nil, manual_y=nil)
+    return unless obj.current_image
     if manual_x || manual_y
       dx = manual_x
       dy = manual_y
