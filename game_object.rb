@@ -30,6 +30,7 @@ class GameObject
   def initialize(source_path, game)
     @source_path = source_path
     @game = game
+    @installed_modules = []
   end
 
   def save
@@ -44,33 +45,20 @@ class GameObject
     @game.register_listener(message, &block)
   end
 
+  def use(mod)
+    @installed_modules << mod
+    extend Modules.const_get(mod)
+  end
+
+  def uses(mod)
+    @installed_modules.include?(mod)
+  end
+
   def [](k)
     @attributes[k]
   end
 
   def [](k, v)
     @attributes[k] = v
-  end
-
-  def set_animation(name)
-    # In general, animations, `current_image`, etc... those should be in forms huh?
-    path = File.join($ANIMATIONS_DIR, self.attributes["class"])
-    @current_animation = Animation.new(path, name)
-  end
-
-  def update
-    @current_animation.tick if @current_animation
-  end
-
-  def current_image
-    if self.attributes["image"]
-      if @current_image_path != self.attributes["image"]
-        @current_image = Image.load(self.attributes["image"])
-        @current_image_path = self.attributes["image"]
-      end
-      @current_image
-    elsif @current_animation
-      @current_animation.current_image
-    end
   end
 end

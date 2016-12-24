@@ -8,7 +8,10 @@ require './game_object'
 require './camera'
 require './image'
 require './map'
-require './animation'
+
+Dir.glob("./modules/*.rb").each do |file|
+  require file
+end
 
 $ASSETS_DIR = "./assets/"
 $ANIMATIONS_DIR = File.join($ASSETS_DIR, "animations")

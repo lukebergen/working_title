@@ -65,7 +65,7 @@ class Game
 
   def draw
     @camera.draw(@current_map)
-    @game_objects.each do |obj|
+    @game_objects.select{|go| go.uses("Animation")}.each do |obj|
       @camera.draw(obj)
     end
   end
