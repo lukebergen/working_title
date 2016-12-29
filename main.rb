@@ -9,7 +9,7 @@ require './camera'
 require './image'
 require './map'
 
-Dir.glob("./modules/*.rb").each do |file|
+Dir.glob("./world/dev/modules/*.rb").each do |file|
   require file
 end
 

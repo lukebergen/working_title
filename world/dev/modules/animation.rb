@@ -57,19 +57,12 @@ module Modules
     end
 
     def set_animation(name)
-      # In general, animations, `current_image`, etc... those should be in forms huh?
       path = File.join($ANIMATIONS_DIR, self.attributes["class"])
       @current_animation = Animation.new(path, name)
     end
 
     def current_image
-      if self.attributes["image"]
-        if @current_image_path != self.attributes["image"]
-          @current_image = Image.load(self.attributes["image"])
-          @current_image_path = self.attributes["image"]
-        end
-        @current_image
-      elsif @current_animation
+      if @current_animation
         @current_animation.current_image
       end
     end

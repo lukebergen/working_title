@@ -5,9 +5,8 @@ class GameObject
   class << self
     def load(path, game)
       inst = self.new(path, game)
+
       file_str = File.read(path)
-      inst.instance_eval(file_str)
-      
       pieces = file_str.split(/^__END__$/)
       if pieces.length > 1
         attrs = JSON::load(pieces[1])
@@ -15,6 +14,7 @@ class GameObject
         attrs = {}
       end
       inst.instance_variable_set(:@attributes, attrs)
+      inst.instance_eval(file_str)
       inst
     end
 
@@ -46,8 +46,10 @@ class GameObject
   end
 
   def use(mod)
-    @installed_modules << mod
-    extend Modules.const_get(mod)
+    unless uses(mod) # prevent re-loading same module multiple times (dependency loops)
+      @installed_modules << mod
+      extend Modules.const_get(mod)
+    end
   end
 
   def uses(mod)

@@ -31,6 +31,8 @@ on :key_down do |key|
     @movement[:y] += @attributes["speed"]
     @attributes["direction"] = "down"
     set_animation("walk_down")
+  when :m
+    puts "instaled_modules: #{@installed_modules.join(', ')}"
   end
 end
 
@@ -56,9 +58,9 @@ __END__
   "id": "player",
   "class": "player",
   "state": "idle",
-  "direction": "down",
-  "x": 304,
-  "y": 200,
+  "direction": "right",
+  "x": 248,
+  "y": 240,
   "z": 3,
   "speed": 4
 }

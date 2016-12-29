@@ -1,3 +1,5 @@
+use "Drawable"
+
 def do_a_thing
   puts "I'm a do a thing now"
 end

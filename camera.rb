@@ -12,6 +12,8 @@ class Camera
     @attach_to = obj
   end
 
+  # TODO: This might be pulled out into Drawable/Image/Animation
+  #       Maybe "draw" should itself be a method in Drawable/Animation
   def draw(obj, manual_x=nil, manual_y=nil)
     return unless obj.current_image
     if manual_x || manual_y
