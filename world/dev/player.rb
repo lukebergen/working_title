@@ -39,13 +39,13 @@ end
 on :key_up do |key|
   case key
   when :left
-    @movement[:x] += @attributes["speed"]
+    @movement[:x] += @attributes["speed"] if @movement[:x] < 0
   when :right
-    @movement[:x] -= @attributes["speed"]
+    @movement[:x] -= @attributes["speed"] if @movement[:x] > 0
   when :up
-    @movement[:y] += @attributes["speed"]
+    @movement[:y] += @attributes["speed"] if @movement[:y] < 0
   when :down
-    @movement[:y] -= @attributes["speed"]
+    @movement[:y] -= @attributes["speed"] if @movement[:y] > 0
   end
 
   if @movement[:x] == 0 && @movement[:y] == 0
