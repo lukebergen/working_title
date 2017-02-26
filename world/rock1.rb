@@ -4,6 +4,6 @@ __END__
 {
   "id": "rock1",
   "image": "assets/images/rock.png",
-  "x": 100,
+  "x": 150,
   "y": 100
 }

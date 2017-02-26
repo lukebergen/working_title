@@ -42,25 +42,29 @@ class GameObject
   end
 
   def on(message, &block)
-    @game.register_listener(message, &block)
+    @game.register_listener(message, self, &block)
   end
 
   def use(mod)
-    unless uses(mod) # prevent re-loading same module multiple times (dependency loops)
+    unless uses?(mod) # prevent re-loading same module multiple times (dependency loops)
       @installed_modules << mod
       extend Modules.const_get(mod)
     end
   end
 
-  def uses(mod)
+  def uses?(mod)
     @installed_modules.include?(mod)
+  end
+
+  def is?(id)
+    @attributes["id"] == id
   end
 
   def [](k)
     @attributes[k]
   end
 
-  def [](k, v)
+  def []=(k, v)
     @attributes[k] = v
   end
 end

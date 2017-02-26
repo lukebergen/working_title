@@ -1,4 +1,5 @@
 use "Animation"
+use "Collidable"
 
 on :loaded do
   # on x (left/right) 0 is stand still, -1 is move left, +1 is move right. On y (up/down), 0 is stand still, -1 is up, and +1 is down. So {x: 1, y: 0} means moving right. {x: -1, y: 1} represents moving left and down (diagonally).
@@ -58,9 +59,11 @@ __END__
   "id": "player",
   "class": "player",
   "state": "idle",
-  "direction": "right",
-  "x": 248,
-  "y": 240,
+  "direction": "down",
+  "x": 224,
+  "y": 285,
   "z": 3,
+  "height": 32,
+  "width": 24,
   "speed": 4
 }
